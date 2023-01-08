@@ -1,0 +1,9 @@
+# baseURL
+@baseURL = http://localhost:3000/web3
+
+###
+# Get account balance
+GET {{ baseURL }}/getBalance/1
+
+# Create account
+POST {{ baseURL }}/createAccount
