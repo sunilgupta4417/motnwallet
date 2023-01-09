@@ -32,4 +32,4 @@ jobs:
       - name: Compile CSS and Javascript
         working-directory: /var/www/vhosts/wallet
         run: |
-          nohup npm run start &
+          npm run start
