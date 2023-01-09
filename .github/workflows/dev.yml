@@ -1,4 +1,4 @@
-name: 'Motion Wallet'
+name: 'motion-wallet'
 
 on:
   push:
