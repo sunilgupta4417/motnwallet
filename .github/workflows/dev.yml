@@ -20,9 +20,10 @@ jobs:
       - name: 'Pull latest'
         working-directory: /var/www/vhosts/wallet
         run: |
-          sudo git pull
+           sudo git pull
      
-	  - name: Node Run
+	
+      - name: Node Run
         working-directory: /var/www/vhosts/wallet
         run: |
           npm run start
