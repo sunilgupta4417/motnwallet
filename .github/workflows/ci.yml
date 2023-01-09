@@ -15,5 +15,5 @@ jobs:
 
       - name: Install Node
         run: |
-          npm install
-          npm run start
+          sudo npm install
+          sudo npm run start
