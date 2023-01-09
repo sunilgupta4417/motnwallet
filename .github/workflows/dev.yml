@@ -32,4 +32,4 @@ jobs:
       - name: Compile CSS and Javascript
         working-directory: /var/www/vhosts/wallet
         run: |
-          killall node && npm start &
+          killall node && pm2 --name motionwallet start npm -- start
