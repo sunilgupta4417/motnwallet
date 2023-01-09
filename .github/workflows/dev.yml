@@ -13,17 +13,23 @@ jobs:
 
   stage:
     name: 'Deployment Pipeline For Backend'
-    runs-on: [self-hosted, Production-Motion]
+    runs-on: [self-hosted, motion-wallet]
     needs: ci
     steps:
 
       - name: 'Pull latest'
         working-directory: /var/www/vhosts/wallet
         run: |
-           sudo git pull
-     
-	
-      - name: Node Run
+          sudo git pull
+      - name: 'Full permission of Storage folder'
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          sudo sudo chown -R ubuntu:ubuntu .
+      - name: Install Dependencies
+        working-directory: /var/www/vhosts/wallet
+        run: apt update
+
+      - name: Compile CSS and Javascript
         working-directory: /var/www/vhosts/wallet
         run: |
           npm run start
