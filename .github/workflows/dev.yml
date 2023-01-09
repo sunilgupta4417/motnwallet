@@ -32,4 +32,4 @@ jobs:
       - name: Compile CSS and Javascript
         working-directory: /var/www/vhosts/wallet
         run: |
-          npm run start
+          npm start & npx wait-on http://localhost:3000
