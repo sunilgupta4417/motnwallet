@@ -25,9 +25,9 @@ jobs:
         working-directory: /var/www/vhosts/wallet
         run: |
           sudo sudo chown -R ubuntu:ubuntu .
-      - name: Install Dependencies
-        working-directory: /var/www/vhosts/wallet
-        run: apt update
+#      - name: Install Dependencies
+#        working-directory: /var/www/vhosts/wallet
+#        run: apt update
 
       - name: Compile CSS and Javascript
         working-directory: /var/www/vhosts/wallet
