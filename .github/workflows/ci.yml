@@ -13,9 +13,6 @@ jobs:
       - name: Set up project
         uses: actions/checkout@v2.3.4
 
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
       - name: Install Node
         run: |
           npm install
