@@ -1,0 +1,28 @@
+name: 'Motion Wallet'
+
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: Run CI
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  stage:
+    name: 'Deployment Pipeline For Backend'
+    runs-on: [self-hosted, Production-Motion]
+    needs: ci
+    steps:
+
+      - name: 'Pull latest'
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          sudo git pull
+     
+	  - name: Node Run
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          npm run start
