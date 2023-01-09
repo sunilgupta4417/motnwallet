@@ -13,7 +13,7 @@ jobs:
 
   stage:
     name: 'Deployment Pipeline For Backend'
-    runs-on: [self-hosted, motion-wallet]
+    runs-on: [self-hosted, version-1]
     needs: ci
     steps:
 
