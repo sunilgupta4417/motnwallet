@@ -64,14 +64,19 @@ class Web3Service {
      * @returns {string}
      * */
     async allocate(toAddress, amount) {
+        console.log("process.env['MOTI_CONTRACT_ADDRESS']", process.env['MOTI_CONTRACT_ADDRESS']);
         const abi = moti_json_1.default.abi;
         const web3 = new web3_1.default(new web3_1.default.providers.HttpProvider(process.env['WEB3_PROVIDER']));
         const contract = new web3.eth.Contract(abi, process.env['MOTI_CONTRACT_ADDRESS']);
-        console.log('>>>>', web3.utils.toWei(amount.toString()));
+        const gas = await web3.eth.estimateGas({
+            from: process.env['WEB3_CONTRACT_OWNER_ACCOUNT'],
+            data: contract.methods.allocate(toAddress, web3.utils.toWei(amount.toString())).encodeABI(),
+            to: process.env['MOTI_CONTRACT_ADDRESS']
+        });
         const tx = {
             from: process.env['WEB3_CONTRACT_OWNER_ACCOUNT'],
             to: process.env['MOTI_CONTRACT_ADDRESS'],
-            gas: 0x37825,
+            gas: gas,
             // this encodes the ABI of the method and the arguments
             data: contract.methods.allocate(toAddress, web3.utils.toWei(amount.toString())).encodeABI(),
         };

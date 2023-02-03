@@ -18,7 +18,7 @@ let BackofficeController = class BackofficeController {
     }
     async mintToken(res, data) {
         const tokenDetails = await this.BackofficeService.approve(data);
-        return { tokenDetails, message: 'Motion Token Approved for distribution though Saita contract' };
+        return { tokenDetails, message: 'Motion Token Approved for distribution though Motion contract' };
     }
 };
 tslib_1.__decorate([

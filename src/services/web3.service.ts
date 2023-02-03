@@ -65,14 +65,20 @@ class Web3Service {
    * @returns {string} 
    * */
   public async allocate(toAddress: string, amount: number): Promise<string> {
+    console.log("process.env['MOTI_CONTRACT_ADDRESS']", process.env['MOTI_CONTRACT_ADDRESS']);
+    
     const abi = Moti.abi as AbiItem[]
     const web3 = new Web3(new Web3.providers.HttpProvider(process.env['WEB3_PROVIDER']));
     const contract = new web3.eth.Contract(abi, process.env['MOTI_CONTRACT_ADDRESS']);
-    console.log('>>>>',  web3.utils.toWei(amount.toString()));
+   const gas = await  web3.eth.estimateGas({
+      from: process.env['WEB3_CONTRACT_OWNER_ACCOUNT'], 
+      data: contract.methods.allocate(toAddress, web3.utils.toWei(amount.toString())).encodeABI(),
+      to: process.env['MOTI_CONTRACT_ADDRESS']
+    });
     const tx = {
       from: process.env['WEB3_CONTRACT_OWNER_ACCOUNT'],
       to: process.env['MOTI_CONTRACT_ADDRESS'],
-      gas: 0x37825,
+      gas: gas,
       // this encodes the ABI of the method and the arguments
       data: contract.methods.allocate(toAddress, web3.utils.toWei(amount.toString())).encodeABI(),
     };
@@ -118,7 +124,6 @@ class Web3Service {
     console.log('signerKey',signerKey);
     
     const signPromise = await web3.eth.accounts.privateKeyToAccount(signerKey).signTransaction(tx);
-
     // raw transaction string may be available in .raw or
     // .rawTransaction depending on which signTransaction
     // function was called

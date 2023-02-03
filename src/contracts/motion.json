@@ -1,8 +1,8 @@
 {
-  "contractName": "NEOToken",
+  "contractName": "Motion",
   "abi":[
 	{
-		"inputs": [],
+		"inputs": [], 
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},

@@ -30,6 +30,6 @@ export class BackofficeController {
   @HttpCode(201)
   public async mintToken(@Res() res: Response,@Body() data: CreateAmountDto) {
     const tokenDetails = await this.BackofficeService.approve(data);
-    return { tokenDetails, message: 'Motion Token Approved for distribution though Saita contract' };
+    return { tokenDetails, message: 'Motion Token Approved for distribution though Motion contract' };
   }
 }

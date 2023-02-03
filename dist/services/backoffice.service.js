@@ -16,6 +16,7 @@ class BackofficeService {
     async allocate(data) {
         if (data.toAddress != undefined) {
             const accountBalance = await this.web3Service.allocate(data.toAddress, data.amount);
+            console.log('>>>>accountBalance', accountBalance);
             return accountBalance;
         }
         else {

@@ -15,6 +15,8 @@ class BackofficeService {
   public async allocate(data: CreateAllocateDto): Promise<any> {
     if (data.toAddress != undefined) {
       const accountBalance = await this.web3Service.allocate(data.toAddress, data.amount);
+      console.log('>>>>accountBalance', accountBalance);
+      
       return accountBalance;
     } else {
       throw new HttpException(500, Constants.errorMsg.depositIssue);
