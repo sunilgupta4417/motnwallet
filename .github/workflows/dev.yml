@@ -1,0 +1,35 @@
+name: 'motion-wallet'
+
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: Run CI
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  stage:
+    name: 'Deployment Pipeline For Backend'
+    runs-on: [self-hosted, version-1]
+    needs: ci
+    steps:
+
+      - name: 'Pull latest'
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          sudo git pull
+      - name: 'Full permission of Storage folder'
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          sudo sudo chown -R ubuntu:ubuntu .
+#      - name: Install Dependencies
+#        working-directory: /var/www/vhosts/wallet
+#        run: apt update
+
+      - name: Compile CSS and Javascript
+        working-directory: /var/www/vhosts/wallet
+        run: |
+          killall node && pm2 --name motionwallet start npm -- start
