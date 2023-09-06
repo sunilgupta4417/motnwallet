@@ -1,0 +1,32 @@
+export declare const constants: {
+    comment: string;
+};
+export declare const errorMsg: {
+    permissionIssue: string;
+    unableFetchBalance: string;
+    burnIssue: string;
+    depositIssue: string;
+    noWithdrawList: string;
+    noWithdrawData: string;
+    invalidToken: string;
+    nouserData: string;
+    noDataFound: string;
+    receiverAddressNotFound: string;
+    unableToSwap: string;
+    unableToWithdraw: string;
+    insufficientFund: string;
+    tokenNotExist: string;
+    invalidPayload: string;
+    txNotFound: string;
+    somethingWentWrong: string;
+    web3providerUndefined: string;
+    unableToSendMail: string;
+    invalidInput: string;
+    passwordConfirmPasswordSame: string;
+    passwordChanged: string;
+    transactionIssue: string;
+    unableToTransaction: string;
+    txFailed: string;
+    amountDecimal: string;
+    ownerBalanceIssue: string;
+};
