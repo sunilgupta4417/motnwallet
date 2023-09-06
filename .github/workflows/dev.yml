@@ -18,18 +18,18 @@ jobs:
     steps:
 
       - name: 'Pull latest'
-        working-directory: /var/www/vhosts/wallet
+        working-directory: /var/www/vhosts/wallet/motnwallet
         run: |
           sudo git pull
       - name: 'Full permission of Storage folder'
-        working-directory: /var/www/vhosts/wallet
+        working-directory: /var/www/vhosts/wallet/motnwallet
         run: |
           sudo sudo chown -R ubuntu:ubuntu .
 #      - name: Install Dependencies
-#        working-directory: /var/www/vhosts/wallet
+#        working-directory: /var/www/vhosts/wallet/motnwallet
 #        run: apt update
 
       - name: Compile CSS and Javascript
-        working-directory: /var/www/vhosts/wallet
+        working-directory: /var/www/vhosts/wallet/motnwallet
         run: |
           killall node && pm2 --name motionwallet start npm -- start
